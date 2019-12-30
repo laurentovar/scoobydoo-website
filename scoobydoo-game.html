@@ -8,20 +8,19 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="Scoobydoo-game.css">
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Sigmar+One&display=swap" rel="stylesheet">
 
 
 
 </head>
 <body>
-<div class="card text-center">
-    <div class="card-header">
-        TITLE
-    </div>
+<div class="card text-center" id="mainCard">
     <div class="card-body">
+        <h1 class="glow">Mystery Incorporated</h1>
         <p id="loading"></p>
-
+        <button type="button" class="btn btn-secondary glow" id="startButton">Start Game!</button>
         <!--Class for the storytext-->
-        <div class="card" id= "story-text-body">
+        <div class="card" id= "story-text-body" style="display: none">
             <div class="card-body">
                 <p class="card-text"></p>
             </div>

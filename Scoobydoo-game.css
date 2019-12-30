@@ -1,3 +1,8 @@
+/*font-family: 'Sigmar One', cursive;*/
+/*font-family: 'Oswald', sans-serif;*/
+body{
+    background-color: black;
+}
 #intro {
     width: 90%;
     height: auto;
@@ -5,4 +10,38 @@
 #story-text-body {
     margin-left: 5%;
     width:90.5% ;
+}
+#startButton {
+    background-color: #81C9BD;
+    border-color: #81C9BD;
+    font-family: 'Sigmar One', cursive;
+    font-size: 30px;
+
+
+}
+#mainCard {
+    background-color: black;
+}
+h1{
+    color: #81C9BD;
+    font-family: 'Sigmar One', cursive;
+    font-size: 60px;
+}
+
+.glow {
+    color: #fff;
+    text-align: center;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px darkcyan, 0 0 40px darkcyan, 0 0 50px darkcyan, 0 0 60px darkcyan, 0 0 70px darkcyan;
+    }
+
+    to {
+        text-shadow: 0 0 20px #fff, 0 0 30px #81C9BD, 0 0 40px #81C9BD, 0 0 50px #81C9BD, 0 0 60px #81C9BD, 0 0 70px #81C9BD, 0 0 80px #81C9BD;
+    }
 }

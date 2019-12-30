@@ -22,7 +22,18 @@ function callAPI() {
 
 callAPI();
 
+//when you click the start button the card for the story text shows
+$("#startButton").click(function(){
+    $("#story-text-body").show();
+});
 
+//when you click the start button the title hides
+$("#startButton").click(function(){
+    $(".glow").hide();
+});
 
-//use jquery to fill the p tag with the response
+// when you click the start button the button hides
+$("#startButton").click(function(){
+    $("#startButton").hide();
+});
 
