@@ -26,6 +26,7 @@ function getStoryText(){
     // Send request
     request.send()
 }
+getStoryText();
 
 function getImage(imageID) {
     // Create a request variable and assign a new XMLHttpRequest object to it.

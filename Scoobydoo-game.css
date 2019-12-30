@@ -1,5 +1,7 @@
-/*font-family: 'Sigmar One', cursive;*/
-/*font-family: 'Oswald', sans-serif;*/
+* {
+    font-family: 'Oswald', sans-serif;
+}
+
 body{
     background-color: black;
 }
@@ -28,6 +30,7 @@ h1{
     font-size: 60px;
 }
 
+/*To make the text glow*/
 .glow {
     color: #fff;
     text-align: center;
