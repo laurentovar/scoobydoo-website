@@ -1,14 +1,30 @@
 //function calls the api and returns the response 
 
 //2 = the default image
-let imageId = 2
+let imageId = 2;
 
 function getOptions(){
 
 }
 
 function getStoryText(){
+    // Create a request variable and assign a new XMLHttpRequest object to it.
+    let request = new XMLHttpRequest();
 
+// Open a new connection, using the GET request on the URL endpoint
+
+    request.open('GET', 'http://localhost:8080/api/v1/storyText/', true);
+
+    request.onload = function() {
+        // Begin accessing JSON data here
+        let data = JSON.parse(this.response);
+
+        console.log(data);
+        $('.card-text').html("<p" + JSON.stringify(data.text) + ">");
+        return data;
+    };
+    // Send request
+    request.send()
 }
 
 function getImage(imageID) {
@@ -32,8 +48,9 @@ function getImage(imageID) {
     request.send()
 }
 
+//function that will call the next picture
 function nextPicture(){
-    imageId++
+    imageId++;
     getImage(imageId);
 }
 
@@ -46,7 +63,7 @@ $("#startButton").click(function(){
     $("#startButton").hide();
     $(".glow").hide();
 
-    nextPicture()
+    nextPicture();
 
     $("#Option1").show();
     $("#Option2").show();
@@ -54,15 +71,15 @@ $("#startButton").click(function(){
 
 
 $("#Option1").click(function () {
-    let x = $("#Option1").attr("name")
+    let x = $("#Option1").attr("name");
     console.log(x);
     getImage(x)
 
-})
+});
 
 $("#Option2").click(function () {
-    let x = $("#Option2").attr("name")
+    let x = $("#Option2").attr("name");
     console.log(x);
     getImage(x)
 
-})
+});
