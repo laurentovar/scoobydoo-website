@@ -1,32 +1,44 @@
-//function calls the api and returns the response 
-
+//initial load of page
 //2 = the default image
-let imageId = 2;
+let imageId = 3;
+getImage(imageId);
+
+
+//function calls the api and returns the response
+
+
+
 
 function getOptions(){
 
 }
 
-function getStoryText(){
+function getStoryText(storyTextID){
     // Create a request variable and assign a new XMLHttpRequest object to it.
     let request = new XMLHttpRequest();
 
 // Open a new connection, using the GET request on the URL endpoint
 
-    request.open('GET', 'http://localhost:8080/api/v1/storyText/', true);
+    request.open('GET', 'http://localhost:8080/api/v1/storyText/' + storyTextID, true);
 
     request.onload = function() {
         // Begin accessing JSON data here
         let data = JSON.parse(this.response);
 
         console.log(data);
-        $('.card-text').html("<p" + JSON.stringify(data.text) + ">");
+        $('.card-text').html("<p>" + JSON.stringify(data.text) + "</p>");
+
+
+        //Call GetPicture with the picId from response
+        getImage(data.picUrl);
+
         return data;
     };
     // Send request
     request.send()
 }
-getStoryText();
+
+
 
 function getImage(imageID) {
     // Create a request variable and assign a new XMLHttpRequest object to it.
@@ -55,7 +67,13 @@ function nextPicture(){
     getImage(imageId);
 }
 
-getImage(imageId);
+
+function getNextButton(nextID){
+    console.log("NextID is: " + nextID);
+    $(".navButtons").html("<button type='button' class='btn btn-secondary glow' id ='nextButton' name="+ nextID + "> Next </button>");
+    //<button type="button" class="btn btn-secondary glow" id="Option2" name="5" style="display: none">Eat Cookies!</button>
+}
+
 
 //when you click the start button the card for the story text shows
 $("#startButton").click(function(){
@@ -64,23 +82,45 @@ $("#startButton").click(function(){
     $("#startButton").hide();
     $(".glow").hide();
 
-    nextPicture();
+    //Get Picture
+    //nextPicture();
 
-    $("#Option1").show();
-    $("#Option2").show();
+    //Get Starting Story Text
+    getStoryText(13)
+
+    //Show Next Button
+    getNextButton(14);
+
+    // $("#Option1").show();
+    //     // $("#Option2").show();
 });
 
 
-$("#Option1").click(function () {
-    let x = $("#Option1").attr("name");
-    console.log(x);
-    getImage(x)
+$(".navButtons").on('click', '#nextButton', function () {
+    //get the id of the next button
+    console.log("press");
+    let nextId = $("#nextButton").attr("name");
+
+    //call get Story Text to get the text using the nextId
+    let response = getStoryText(nextId);
+
+    //Show Next Button
+    getNextButton(++nextId);
 
 });
 
-$("#Option2").click(function () {
-    let x = $("#Option2").attr("name");
-    console.log(x);
-    getImage(x)
-
-});
+//
+// $("#Option1").click(function () {
+//     let x = $("#Option1").attr("name");
+//     console.log(x);
+//     getImage(x);
+//     getStoryText(13)
+//
+// });
+//
+// $("#Option2").click(function () {
+//     let x = $("#Option2").attr("name");
+//     console.log(x);
+//     getImage(x)
+//
+// });
