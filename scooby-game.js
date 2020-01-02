@@ -10,6 +10,7 @@ getImage(imageId);
 
 function createOptionsButton(option_id, divRow){
     console.log(option_id);
+    console.log(divRow);
     //call the options api
 
     // Create a request variable and assign a new XMLHttpRequest object to it.
@@ -23,8 +24,22 @@ function createOptionsButton(option_id, divRow){
         // Begin accessing JSON data here
         let data = JSON.parse(this.response);
 
-        $("#row" + divRow).html("<button type='button' class='btn btn-secondary glow' id ='nextButton' name="+ data.step_text_id + "> "+ data.optionText + " </button>");
 
+        switch (divRow){
+            case 1:
+                $("#row1").html("<button type='button' class='btn btn-secondary glow' id ='option1' name="+ data.step_text_id + "> "+ data.optionText + " </button>");
+                break;
+            case 2:
+                $("#row2").html("<button type='button' class='btn btn-secondary glow' id ='option2' name="+ data.step_text_id + "> "+ data.optionText + " </button>");
+                break;
+            case 3:
+                $("#row3").html("<button type='button' class='btn btn-secondary glow' id ='option3' name="+ data.step_text_id + "> "+ data.optionText + " </button>");
+                break;
+            case 4:
+                $("#row4").html("<button type='button' class='btn btn-secondary glow' id ='option4' name="+ data.step_text_id + "> "+ data.optionText + " </button>");
+                break;
+
+        }
 
         console.log(data);
 
@@ -94,7 +109,7 @@ function nextPicture(){
 
 function getNextButton(nextID){
     console.log("NextID is: " + nextID);
-    $(".navButtons").html("<button type='button' class='btn btn-secondary glow' id ='nextButton' name="+ nextID + "> Next </button>");
+    $("#nextButtonContainer").html("<button type='button' class='btn btn-secondary glow' id ='nextButton' name="+ nextID + "> Next </button>");
     //<button type="button" class="btn btn-secondary glow" id="Option2" name="5" style="display: none">Eat Cookies!</button>
 }
 
@@ -119,16 +134,40 @@ $("#startButton").click(function(){
     //     // $("#Option2").show();
 });
 
-
-$(".navButtons").on('click', '#nextButton', function () {
+//for each options button go to next storyText
+$(".navButtons").on('click', '#option1', function () {
     //get the id of the next button
-    console.log("press");
-    let nextId = $("#nextButton").attr("name");
+    let nextId = $("#option1").attr("name");
 
     //call get Story Text to get the text using the nextId
     let response = getStoryText(nextId);
 
 });
+$(".navButtons").on('click', '#option2', function () {
+    //get the id of the next button
+    let nextId = $("#option1").attr("name");
+
+    //call get Story Text to get the text using the nextId
+    let response = getStoryText(nextId);
+
+});
+$(".navButtons").on('click', '#option3', function () {
+    //get the id of the next button
+    let nextId = $("#option1").attr("name");
+
+    //call get Story Text to get the text using the nextId
+    let response = getStoryText(nextId);
+
+});
+$(".navButtons").on('click', '#option4', function () {
+    //get the id of the next button
+    let nextId = $("#option1").attr("name");
+
+    //call get Story Text to get the text using the nextId
+    let response = getStoryText(nextId);
+
+});
+
 
 //check to see if you need options button
 function needButton(storyTextReponse) {
@@ -159,6 +198,8 @@ function needButton(storyTextReponse) {
         console.log(bucketOptions);
         console.log("Options length:" + bucketOptions.length);
 
+        //call hideNextButton
+        hideNextButton();
 
         let row = 1;
         bucketOptions.forEach(function(option){
@@ -168,8 +209,24 @@ function needButton(storyTextReponse) {
     }
 
 }
+//go on to next part of story from options
+$(".navButtons").on('click', '#nextButton', function () {
+    //get the id of the next button
+    console.log("press");
+    let nextId = $("#nextButton").attr("name");
+
+    //call get Story Text to get the text using the nextId
+    let response = getStoryText(nextId);
+
+});
 
 function getNextButtonId() {
     let nextId = $("#nextButton").attr("name");
     return nextId;
 }
+
+//hide the next button
+function hideNextButton() {
+    $("#nextButtonContainer").hide();
+}
+
