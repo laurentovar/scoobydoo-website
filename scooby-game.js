@@ -24,7 +24,7 @@ function createOptionsButton(option_id, divRow){
         // Begin accessing JSON data here
         let data = JSON.parse(this.response);
 
-
+        showNOptionButtons();
         switch (divRow){
             case 1:
                 $("#row1").html("<button type='button' class='btn btn-secondary glow' id ='option1' name="+ data.step_text_id + "> "+ data.optionText + " </button>");
@@ -142,6 +142,12 @@ $(".navButtons").on('click', '#option1', function () {
     //call get Story Text to get the text using the nextId
     let response = getStoryText(nextId);
 
+    //show next button
+    showNextButtonContainer();
+
+    //hide the options after you click
+    hideNOptionButtons();
+
 });
 $(".navButtons").on('click', '#option2', function () {
     //get the id of the next button
@@ -149,6 +155,12 @@ $(".navButtons").on('click', '#option2', function () {
 
     //call get Story Text to get the text using the nextId
     let response = getStoryText(nextId);
+
+    //show next button
+    showNextButtonContainer();
+
+    //hide the options after you click
+    hideNOptionButtons();
 
 });
 $(".navButtons").on('click', '#option3', function () {
@@ -158,6 +170,12 @@ $(".navButtons").on('click', '#option3', function () {
     //call get Story Text to get the text using the nextId
     let response = getStoryText(nextId);
 
+    //show next button
+    showNextButtonContainer();
+
+    //hide the options after you click
+    hideNOptionButtons();
+
 });
 $(".navButtons").on('click', '#option4', function () {
     //get the id of the next button
@@ -165,6 +183,12 @@ $(".navButtons").on('click', '#option4', function () {
 
     //call get Story Text to get the text using the nextId
     let response = getStoryText(nextId);
+
+    //show next button
+    showNextButtonContainer();
+
+    //hide the options after you click
+    hideNOptionButtons();
 
 });
 
@@ -175,9 +199,9 @@ function needButton(storyTextReponse) {
         //create the next button
         console.log("There were no options");
 
-        //Show Next Button
-        let buttonId = getNextButtonId();
-        getNextButton(++ buttonId);
+        //Show Next Button using the id from the DB
+        console.log("Next Story Text ID: " +  storyTextReponse.nextStoryTextID);
+        getNextButton(storyTextReponse.nextStoryTextID);
     }
     else {
         console.log("There are options");
@@ -230,3 +254,23 @@ function hideNextButton() {
     $("#nextButtonContainer").hide();
 }
 
+//show the next button
+function showNextButtonContainer() {
+    $("#nextButtonContainer").show();
+}
+
+//hide the options button
+function hideNOptionButtons() {
+    $("#row1").hide();
+    $("#row2").hide();
+    $("#row3").hide();
+    $("#row4").hide();
+}
+
+//hide the options button
+function showNOptionButtons() {
+    $("#row1").show();
+    $("#row2").show();
+    $("#row3").show();
+    $("#row4").show();
+}
