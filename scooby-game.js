@@ -4,10 +4,7 @@ let imageId = 3;
 getImage(imageId);
 
 
-//function calls the api and returns the response
-
-
-
+//====Option Buttons======
 function createOptionsButton(option_id, divRow){
     console.log(option_id);
     console.log(divRow);
@@ -24,6 +21,7 @@ function createOptionsButton(option_id, divRow){
         // Begin accessing JSON data here
         let data = JSON.parse(this.response);
 
+        //makes a button for the options
         showNOptionButtons();
         switch (divRow){
             case 1:
@@ -49,6 +47,7 @@ function createOptionsButton(option_id, divRow){
     request.send()
 }
 
+//======Story Text=========
 function getStoryText(storyTextID){
     // Create a request variable and assign a new XMLHttpRequest object to it.
     let request = new XMLHttpRequest();
@@ -78,7 +77,7 @@ function getStoryText(storyTextID){
 }
 
 
-
+//======Images========
 function getImage(imageID) {
     // Create a request variable and assign a new XMLHttpRequest object to it.
     let request = new XMLHttpRequest();
@@ -107,11 +106,13 @@ function nextPicture(){
 }
 
 
+//=====Next button generated=====
 function getNextButton(nextID){
     console.log("NextID is: " + nextID);
     $("#nextButtonContainer").html("<button type='button' class='btn btn-secondary glow' id ='nextButton' name="+ nextID + "> Next </button>");
     //<button type="button" class="btn btn-secondary glow" id="Option2" name="5" style="display: none">Eat Cookies!</button>
 }
+
 
 
 //when you click the start button the card for the story text shows
@@ -121,20 +122,15 @@ $("#startButton").click(function(){
     $("#startButton").hide();
     $(".glow").hide();
 
-    //Get Picture
-    //nextPicture();
-
     //Get Starting Story Text
-    getStoryText(13)
+    getStoryText(13);
 
     //Show Next Button
     getNextButton(14);
 
-    // $("#Option1").show();
-    //     // $("#Option2").show();
 });
 
-//for each options button go to next storyText
+//====for each options button go to next storyText======
 $(".navButtons").on('click', '#option1', function () {
     //get the id of the next button
     let nextId = $("#option1").attr("name");
@@ -149,6 +145,7 @@ $(".navButtons").on('click', '#option1', function () {
     hideNOptionButtons();
 
 });
+
 $(".navButtons").on('click', '#option2', function () {
     //get the id of the next button
     let nextId = $("#option2").attr("name");
@@ -193,7 +190,7 @@ $(".navButtons").on('click', '#option4', function () {
 });
 
 
-//check to see if you need options button
+//=====check to see if you need options button======
 function needButton(storyTextReponse) {
     if(storyTextReponse.option1 === null && storyTextReponse.option2 === null && storyTextReponse.option3 === null && storyTextReponse.option4 === null){
         //create the next button
@@ -233,7 +230,7 @@ function needButton(storyTextReponse) {
     }
 
 }
-//go on to next part of story from options
+//======go on to next part of story from options=====
 $(".navButtons").on('click', '#nextButton', function () {
     //get the id of the next button
     console.log("press");
