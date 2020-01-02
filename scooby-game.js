@@ -151,7 +151,7 @@ $(".navButtons").on('click', '#option1', function () {
 });
 $(".navButtons").on('click', '#option2', function () {
     //get the id of the next button
-    let nextId = $("#option1").attr("name");
+    let nextId = $("#option2").attr("name");
 
     //call get Story Text to get the text using the nextId
     let response = getStoryText(nextId);
@@ -165,7 +165,7 @@ $(".navButtons").on('click', '#option2', function () {
 });
 $(".navButtons").on('click', '#option3', function () {
     //get the id of the next button
-    let nextId = $("#option1").attr("name");
+    let nextId = $("#option3").attr("name");
 
     //call get Story Text to get the text using the nextId
     let response = getStoryText(nextId);
@@ -179,7 +179,7 @@ $(".navButtons").on('click', '#option3', function () {
 });
 $(".navButtons").on('click', '#option4', function () {
     //get the id of the next button
-    let nextId = $("#option1").attr("name");
+    let nextId = $("#option4").attr("name");
 
     //call get Story Text to get the text using the nextId
     let response = getStoryText(nextId);
@@ -261,10 +261,10 @@ function showNextButtonContainer() {
 
 //hide the options button
 function hideNOptionButtons() {
-    $("#row1").hide();
-    $("#row2").hide();
-    $("#row3").hide();
-    $("#row4").hide();
+    $("#row1").html("");
+    $("#row2").html("");
+    $("#row3").html("");
+    $("#row4").html("");
 }
 
 //hide the options button
