@@ -8,9 +8,30 @@ getImage(imageId);
 
 
 
+function createOptionsButton(option_id, divRow){
+    console.log(option_id);
+    //call the options api
 
-function getOptions(){
+    // Create a request variable and assign a new XMLHttpRequest object to it.
+    let request = new XMLHttpRequest();
 
+// Open a new connection, using the GET request on the URL endpoint
+
+    request.open('GET', 'http://localhost:8080/api/v1/options/' + option_id, true);
+
+    request.onload = function() {
+        // Begin accessing JSON data here
+        let data = JSON.parse(this.response);
+
+        $("#row" + divRow).html("<button type='button' class='btn btn-secondary glow' id ='nextButton' name="+ data.step_text_id + "> "+ data.optionText + " </button>");
+
+
+        console.log(data);
+
+        return data;
+    };
+    // Send request
+    request.send()
 }
 
 function getStoryText(storyTextID){
@@ -31,6 +52,9 @@ function getStoryText(storyTextID){
 
         //Call GetPicture with the picId from response
         getImage(data.picUrl);
+
+
+        needButton(data);
 
         return data;
     };
@@ -104,23 +128,48 @@ $(".navButtons").on('click', '#nextButton', function () {
     //call get Story Text to get the text using the nextId
     let response = getStoryText(nextId);
 
-    //Show Next Button
-    getNextButton(++nextId);
-
 });
 
-//
-// $("#Option1").click(function () {
-//     let x = $("#Option1").attr("name");
-//     console.log(x);
-//     getImage(x);
-//     getStoryText(13)
-//
-// });
-//
-// $("#Option2").click(function () {
-//     let x = $("#Option2").attr("name");
-//     console.log(x);
-//     getImage(x)
-//
-// });
+//check to see if you need options button
+function needButton(storyTextReponse) {
+    if(storyTextReponse.option1 === null && storyTextReponse.option2 === null && storyTextReponse.option3 === null && storyTextReponse.option4 === null){
+        //create the next button
+        console.log("There were no options");
+
+        //Show Next Button
+        let buttonId = getNextButtonId();
+        getNextButton(++ buttonId);
+    }
+    else {
+        console.log("There are options");
+        //check to see how many exist
+        let bucketOptions = [];
+        if(storyTextReponse.option1 !== null){
+            bucketOptions.push(storyTextReponse.option1);
+        }
+        if(storyTextReponse.option2 !== null){
+        bucketOptions.push(storyTextReponse.option2);
+        }
+        if (storyTextReponse.option3 !== null){
+            bucketOptions.push(storyTextReponse.option3);
+        }
+        if (storyTextReponse.option4 !== null){
+            bucketOptions.push(storyTextReponse.option4);
+        }
+        console.log(bucketOptions);
+        console.log("Options length:" + bucketOptions.length);
+
+
+        let row = 1;
+        bucketOptions.forEach(function(option){
+            createOptionsButton(option, row);
+            row++;
+        })
+    }
+
+}
+
+function getNextButtonId() {
+    let nextId = $("#nextButton").attr("name");
+    return nextId;
+}
