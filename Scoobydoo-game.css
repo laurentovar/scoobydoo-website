@@ -6,12 +6,15 @@ body{
     background-color: black;
 }
 #intro {
-    width: 90%;
+    width: 85%;
     height: auto;
 }
 #story-text-body {
     margin-left: 5%;
-    width:90.5% ;
+    width:88%;
+    font-size: 20px;
+    background-color: black;
+    color: white;
 }
 #startButton {
     background-color: #81C9BD;
