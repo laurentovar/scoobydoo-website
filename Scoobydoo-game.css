@@ -37,6 +37,13 @@ h1{
     font-size: 60px;
 }
 
+/*#row1 #row2 #row3 #row4{*/
+/*    text-align: center;*/
+/*    display: inline-block;*/
+/*    position: absolute;*/
+/*    top: 50%;*/
+/*    left: 50%;*/
+/*}*/
 /*To make the text glow*/
 .glow {
     color: #fff;
